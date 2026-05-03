@@ -165,8 +165,15 @@ section {
 #profile {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: 5rem;
-    height: 80vh;
+    height: auto;
+    min-height: 70vh;
+    margin-top: -10px;
+}
+
+#profile .section_text_p1 {
+    margin-top: 0;
 }
 
 /* Profile picture */
@@ -477,6 +484,151 @@ footer p{
     text-align: center;
 }
 
+/* Theme modal */
+.theme-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: theme-modal-fade 0.25s ease-out;
+}
+
+.theme-modal[hidden] {
+    display: none;
+}
+
+.theme-modal__dialog {
+    background: #fff;
+    color: #181a1b;
+    padding: 2rem 2.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    max-width: 90vw;
+    width: 24rem;
+}
+
+.theme-modal__dialog h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.theme-modal__dialog p {
+    margin-bottom: 1.5rem;
+    color: rgb(85, 85, 85);
+}
+
+.theme-modal__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.theme-modal__btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    border: 1px solid rgb(53, 53, 53);
+    background: #fff;
+    color: #181a1b;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.theme-modal__btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.theme-modal__btn--dark {
+    background: #23272a;
+    color: #f8f8f8;
+    border-color: #23272a;
+}
+
+.theme-modal__btn--dark:hover {
+    background: #000;
+}
+
+@keyframes theme-modal-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body.dark-mode .theme-modal__dialog {
+    background: #23272a;
+    color: #f8f8f8;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .theme-modal__dialog h2 {
+    color: #f8f8f8;
+}
+
+body.dark-mode .theme-modal__dialog p {
+    color: #e0e0e0;
+}
+
+body.dark-mode .theme-modal__btn {
+    background: #2d333b;
+    color: #f8f8f8;
+    border-color: #4fc3f7;
+}
+
+body.dark-mode .theme-modal__btn:hover {
+    background: #3a4049;
+}
+
+body.dark-mode .theme-modal__btn--dark {
+    background: #4fc3f7;
+    color: #181a1b;
+    border-color: #4fc3f7;
+}
+
+body.dark-mode .theme-modal__btn--dark:hover {
+    background: #82e9de;
+}
+
+/* Dark mode toggle button */
+#dark-mode-toggle {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 1100;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid rgb(163, 163, 163);
+    background: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+#dark-mode-toggle:hover {
+    background: #f0f0f0;
+}
+
+body.dark-mode #dark-mode-toggle {
+    background: #23272a;
+    border-color: #4fc3f7;
+    color: #ffd54f;
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+    background: #2d333b;
+}
+
 /* Dark mode styles */
 body.dark-mode {
     background: #181a1b;
@@ -491,12 +643,17 @@ body.dark-mode footer {
 
 body.dark-mode .details-container,
 body.dark-mode .details-containers,
-body.dark-mode .color-container,
-body.dark-mode .experience-containers {
+body.dark-mode .color-container {
     background: #23272a !important;
     border-color: #4fc3f7 !important;
     color: #f8f8f8 !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .experience-containers {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 body.dark-mode a {
@@ -541,4 +698,28 @@ body.dark-mode p,
 body.dark-mode .section_text_p1,
 body.dark-mode .section_text_p2 {
     color: #e0e0e0;
+}
+
+body.dark-mode .logo,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #f8f8f8;
+}
+
+body.dark-mode .hamburger-icon span {
+    background-color: #f8f8f8;
+}
+
+body.dark-mode .menu-links {
+    background-color: #23272a;
+}
+
+body.dark-mode .menu-links a {
+    color: #4fc3f7;
+}
+
+body.dark-mode .contact-info-upper-container {
+    background: #23272a;
+    border-color: #4fc3f7;
 }

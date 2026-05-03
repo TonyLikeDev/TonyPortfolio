@@ -24,6 +24,16 @@
         </div>
     </nav>
     <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+    <div id="theme-modal" class="theme-modal" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title" hidden>
+        <div class="theme-modal__dialog">
+            <h2 id="theme-modal-title">Welcome!</h2>
+            <p>Would you like to have a light or dark experience?</p>
+            <div class="theme-modal__buttons">
+                <button type="button" class="theme-modal__btn" data-theme="light">☀️ Light</button>
+                <button type="button" class="theme-modal__btn theme-modal__btn--dark" data-theme="dark">🌙 Dark</button>
+            </div>
+        </div>
+    </div>
     <nav id = "hamburger-nav"> 
         <div class="logo"> <h1>Tony's Portfolio</h1> </div>
         <div class="hamburger-menu">
