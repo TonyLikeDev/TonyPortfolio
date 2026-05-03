@@ -47,3 +47,42 @@ function toggleMenu() {
         });
     }
 })();
+
+(function () {
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+
+    const dot = document.createElement("div");
+    dot.id = "cursor-dot";
+    document.body.appendChild(dot);
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let dotX = mouseX;
+    let dotY = mouseY;
+    const ease = 0.18;
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.classList.add("is-visible");
+    });
+
+    document.addEventListener("mouseleave", () => dot.classList.remove("is-visible"));
+    document.addEventListener("mouseenter", () => dot.classList.add("is-visible"));
+
+    const hoverSelector = "a, button, .btn, .hamburger-icon, [onclick], input, textarea, select";
+    document.addEventListener("mouseover", (e) => {
+        if (e.target.closest(hoverSelector)) dot.classList.add("is-hover");
+    });
+    document.addEventListener("mouseout", (e) => {
+        if (e.target.closest(hoverSelector)) dot.classList.remove("is-hover");
+    });
+
+    function render() {
+        dotX += (mouseX - dotX) * ease;
+        dotY += (mouseY - dotY) * ease;
+        dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(render);
+    }
+    render();
+})();

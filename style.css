@@ -723,3 +723,57 @@ body.dark-mode .contact-info-upper-container {
     background: #23272a;
     border-color: #4fc3f7;
 }
+
+/* Force default cursor everywhere (no text I-beam) */
+html, body, *, *::before, *::after {
+    cursor: default !important;
+}
+
+/* But keep pointer cursor on clickable elements */
+a, button, .btn, .hamburger-icon, [onclick],
+a *, button *, .btn *, .hamburger-icon *, [onclick] * {
+    cursor: pointer !important;
+}
+
+/* Cursor follower dot */
+#cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgb(53, 53, 53);
+    pointer-events: none;
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 0;
+    transition: opacity 200ms ease, background 200ms ease, width 150ms ease, height 150ms ease;
+    z-index: 9999;
+    will-change: transform;
+}
+
+#cursor-dot.is-visible {
+    opacity: 1;
+}
+
+#cursor-dot.is-hover {
+    width: 28px;
+    height: 28px;
+    background: rgba(53, 53, 53, 0.35);
+}
+
+body.dark-mode #cursor-dot {
+    background: #4fc3f7;
+}
+
+body.dark-mode #cursor-dot.is-hover {
+    background: rgba(79, 195, 247, 0.4);
+}
+
+@media (hover: none), (pointer: coarse) {
+    #cursor-dot { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #cursor-dot { transition: opacity 200ms ease, background 200ms ease; }
+}
